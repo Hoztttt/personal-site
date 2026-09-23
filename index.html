@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parker Sorensen</title>
+<meta name="description" content="Parker Sorensen — Economics at NYU. Sell-side M&amp;A, things I've built, and what I'm still working out.">
+<meta name="color-scheme" content="light dark">
+<link rel="preload" href="fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin="">
+<link rel="preload" href="fonts/ibm-plex-sans-600.woff2" as="font" type="font/woff2" crossorigin="">
+
+<style>
+/* ===========================================================================
+   TYPEFACES — IBM Plex Sans + IBM Plex Mono, self-hosted.
+   Open Font License, so self-hosting is fine and there's no Google request:
+   the page stays genuinely self-contained and works offline. 252K of woff2,
+   latin + latin-ext only.
+
+   WHY PLEX: it was commissioned as a corporate typeface and reads that way —
+   neutral, engineered, slightly technical. The sans and the mono are siblings,
+   so the metadata and the prose feel like one system rather than two fonts
+   put next to each other.
+
+   TO SWAP IT OUT: change --sans and --mono below. Nothing else references a
+   typeface by name. If you ever want a serif instead, IBM Plex Serif is the
+   drop-in sibling and needs no other changes.
+   =========================================================================== */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/ibm-plex-mono-400-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/ibm-plex-mono-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/ibm-plex-mono-500-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/ibm-plex-mono-500.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/ibm-plex-sans-400-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('fonts/ibm-plex-sans-400.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/ibm-plex-sans-500-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('fonts/ibm-plex-sans-500.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/ibm-plex-sans-600-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('fonts/ibm-plex-sans-600.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+
+/* ===========================================================================
+   PARKER SORENSEN — personal site
+   Wide-first desktop layout. Single file, no build step, no framework.
+
+   DESIGN NOTES
+   - Grayscale interface. The ONLY color in the UI is one accent (deep petrol)
+     on links and rules. All other color comes from the photographs.
+     This is deliberate — it's why the photos read as content rather than
+     decoration. If you add a second UI color, that effect collapses.
+   - Sans + mono, no serif. Reads as a research note, not a magazine.
+   - Three effective columns on wide screens: [nav] [metadata] [prose].
+     That's what makes it feel built for a desktop rather than a stretched
+     phone page.
+
+   TUNING KNOBS — most visual changes should happen in :root below, not in
+   the rules further down.
+   =========================================================================== */
+
+:root {
+  /* ---- palette (light) ---- */
+  --bg:      #FCFCFB;
+  --panel:   #F3F3F1;   /* photo backdrops, subtle fills */
+  --ink:     #15181B;
+  --muted:   #696F77;
+  --line:    #E2E3E0;
+  --accent:  #0D5C6B;
+
+  /* ---- type ---- */
+  --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  /* ---- layout ----
+     TRY: --shell 1560px for a more expansive feel on large monitors,
+          or 1240px if it currently reads too sprawling. */
+  --shell:   1400px;
+  --rail:    210px;   /* sticky nav column        */
+  --meta:    150px;   /* per-entry metadata gutter */
+  --gap:     72px;
+  --measure: 66ch;    /* prose width cap — keep this even though the page is
+                         wide. Long lines are the fastest way to make a wide
+                         layout unreadable. */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:     #0E1113;
+    --panel:  #171B1E;
+    --ink:    #E9EBEC;
+    --muted:  #8D969D;
+    --line:   #242A2E;
+    --accent: #57C4D6;
+  }
+  /* Photos are bright against a dark page. This takes the edge off without
+     making them look washed out. DELETE these two lines if you'd rather the
+     images stay at full punch in dark mode. */
+  img { filter: brightness(.92) contrast(1.02); }
+}
+
+/* =========================== base =========================== */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17.5px;
+  line-height: 1.64;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+
+::selection { background: var(--accent); color: var(--bg); }
+
+a { color: inherit; text-decoration-color: var(--accent); text-underline-offset: 3px;
+    text-decoration-thickness: 1px; transition: color .12s ease, text-decoration-thickness .12s ease; }
+a:hover { color: var(--accent); text-decoration-thickness: 2px; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.skip { position: absolute; left: -9999px; background: var(--bg); padding: .6rem 1rem;
+        font-family: var(--mono); font-size: .75rem; z-index: 50; }
+.skip:focus { left: 1rem; top: 1rem; }
+
+/* small uppercase mono — used for every label on the page */
+.tag {
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* =========================== shell =========================== */
+.shell {
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: 0 clamp(28px, 4.5vw, 72px);
+}
+
+/* =========================== masthead ===========================
+   Name + lede on the left, portrait on the right. This is the one place
+   the page uses its full width for a single idea.
+
+   ALTERNATIVE: swap the column order (portrait left) by changing
+   grid-template-columns and adding `order:-1` to .portrait — worth trying,
+   it feels noticeably more formal.
+   ================================================================ */
+.masthead {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--gap);
+  align-items: start;
+  padding: clamp(14px, 1.8vw, 26px) 0 clamp(40px, 5vw, 64px);
+  border-bottom: 1px solid var(--line);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 4.8vw, 3.8rem);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 600;
+  margin: 0 0 1.9rem;
+}
+
+/* ---- quick-reference stat sheet ----
+   A spec sheet, not a hero. Mono label in a fixed gutter, value beside it,
+   hairline between rows — the same label/value system the entry metadata
+   already uses, so it reads as native rather than bolted on.
+   TRY: --stat-label 200px if you add a longer label than "Campus involvement". */
+.stats {
+  --stat-label: 168px;
+  margin: 0;
+  border-top: 1px solid var(--line);
+  max-width: 46rem;
+}
+.stats > div {
+  display: grid;
+  grid-template-columns: var(--stat-label) minmax(0, 1fr);
+  gap: 0 26px;
+  align-items: baseline;
+  padding: .58rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.stats dt {
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.stats dd { margin: 0; font-size: .97rem; line-height: 1.45; }
+
+/* the GPA qualifier — attached to the number on purpose, so nobody reads it
+   as an NYU figure */
+.qual { font-style: italic; color: var(--muted); font-size: .9em; }
+
+.portrait { margin: 0; }
+.portrait img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: 50% 22%;   /* nudge if the crop cuts your head awkwardly */
+  background: var(--panel);
+}
+
+/* =========================== body grid =========================== */
+.body-grid {
+  display: grid;
+  grid-template-columns: var(--rail) minmax(0, 1fr);
+  gap: var(--gap);
+  padding-top: clamp(40px, 5vw, 72px);
+}
+
+/* ---- sticky nav rail ---- */
+.rail { position: sticky; top: 40px; align-self: start; }
+
+.rail nav ul { list-style: none; margin: 0 0 2.4rem; padding: 0; }
+.rail nav li { margin-bottom: .1rem; }
+.rail nav a {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  align-items: baseline;
+  padding: .42rem 0;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color .12s ease, border-color .12s ease;
+}
+.rail nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+.rail nav a .n { color: var(--accent); }
+
+.rail .contact { margin: 0; }
+.rail .contact a { display: block; padding: .2rem 0; font-family: var(--mono);
+                   font-size: .72rem; letter-spacing: .06em; }
+
+/* =========================== about =========================== ===============
+   Short intro at the top of main. Slightly larger than body copy so it reads as
+   a preamble rather than a section. Four paragraphs is the ceiling — past that the
+   material belongs in a numbered section instead. The "why" deliberately lives in 03,
+   not here: this block is how you got here, 03 is why you'd stay.
+   =========================================================================== */
+.about {
+  max-width: 62ch;
+  padding-bottom: clamp(40px, 5vw, 64px);
+  margin-bottom: clamp(48px, 6vw, 80px);
+  border-bottom: 1px solid var(--line);
+}
+.about .tag { display: block; margin-bottom: 1.1rem; }
+.about p { font-size: 1.055rem; line-height: 1.62; margin: 0 0 1.05em; }
+.about p:last-child { margin-bottom: 0; }
+
+/* =========================== sections =========================== */
+section { scroll-margin-top: 32px; margin-bottom: clamp(64px, 8vw, 108px); }
+
+.section-head {
+  display: flex; align-items: baseline; gap: 1rem;
+  padding-bottom: .75rem; margin-bottom: 2.6rem;
+  border-bottom: 1px solid var(--ink);
+}
+.section-head h2 {
+  font-family: var(--mono); font-size: .74rem; font-weight: 400;
+  letter-spacing: .16em; text-transform: uppercase; margin: 0;
+}
+.section-head .n { font-family: var(--mono); font-size: .74rem;
+                   letter-spacing: .1em; color: var(--accent); }
+
+/* ---- entries: metadata gutter + prose ---- */
+.entry {
+  display: grid;
+  grid-template-columns: var(--meta) minmax(0, 1fr);
+  gap: 0 48px;
+  margin-bottom: 3.4rem;
+}
+.entry:last-child { margin-bottom: 0; }
+
+.entry .meta { padding-top: .45rem; }
+.entry .meta span { display: block; margin-bottom: .28rem;
+                    font-family: var(--mono); font-size: .68rem;
+                    letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+
+.entry h3 { font-size: 1.18rem; font-weight: 600; letter-spacing: -0.012em;
+            line-height: 1.32; margin: 0 0 .6rem; }
+.entry .prose { max-width: var(--measure); }
+.entry .prose p { margin: 0 0 .95em; }
+.entry .prose p:last-child { margin-bottom: 0; }
+
+/* =========================== photos inside entries ===========================
+   Photos now live inside the entry they belong to rather than in a standalone
+   band, so they sit in the prose column and inherit its measure.
+   The old .band and .grid rules were removed with the sections that used them.
+   ============================================================================ */
+.entry-figure { margin: 1.5rem 0 0; max-width: var(--measure); }
+.entry-figure img {
+  width: 100%;
+  height: 330px;
+  object-fit: cover;
+  object-position: 50% 45%;
+  background: var(--panel);
+}
+
+/* =========================== footer =========================== */
+footer { border-top: 1px solid var(--line); padding: 1.6rem 0 4rem;
+         display: flex; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+
+/* =========================== narrow fallback ===========================
+   This page is designed for desktop, as asked. These rules exist only so it
+   degrades gracefully rather than breaking if someone opens it on a phone —
+   the rail unsticks, columns collapse, grids drop to two up.
+   ====================================================================== */
+@media (max-width: 1040px) {
+  .masthead { grid-template-columns: 1fr; gap: 40px; }
+  .stats > div { grid-template-columns: 1fr; gap: .15rem; }
+  .portrait { max-width: 300px; }
+  .body-grid { grid-template-columns: 1fr; gap: 40px; }
+  .rail { position: static; }
+  .rail nav ul { display: flex; flex-wrap: wrap; gap: 0 1.6rem; margin-bottom: 1.6rem; }
+  .rail nav a { border-bottom: none; }
+  .entry { grid-template-columns: 1fr; gap: .5rem; }
+  .entry .meta { padding-top: 0; }
+  .entry .meta span { display: inline; margin-right: .9rem; }
+  .band { grid-template-columns: repeat(2, 1fr); }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .band, .grid { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell">
+
+  <!-- ================= MASTHEAD ================= -->
+  <header class="masthead">
+    <div>
+      <h1>Parker&nbsp;Sorensen</h1>
+
+      <!-- Quick-reference stat sheet. Every row is a checkable fact.
+           Add a row by copying one <div>; keep it near eight so it stays
+           scannable. -->
+      <dl class="stats">
+        <div><dt>School</dt>
+             <dd>New York University — College of Arts &amp; Science</dd></div>
+        <div><dt>Major</dt>
+             <dd>Economics (BA)</dd></div>
+        <div><dt>Graduating</dt>
+             <dd>January 2029</dd></div>
+        <div><dt>GPA</dt>
+             <dd>3.86 <em class="qual">(Grand Canyon University)</em></dd></div>
+        <div><dt>Hometown</dt>
+             <dd>Fort Collins, Colorado</dd></div>
+        <div><dt>Work experience</dt>
+             <dd>Clarke Advisors (M&amp;A advisory) · Peakstone Group (M&amp;A advisory) · Even/Odd (Accounting) · Flood &amp; Peterson (Accounting)</dd></div>
+        <div><dt>Campus involvement</dt>
+             <dd>GCU Investment Banking Club, founding member ·
+                 Student-Managed Investment Fund, energy sector head</dd></div>
+        <div><dt>Targeting</dt>
+             <dd>Investment banking analyst, Summer 2028, with a long-term focus on investing</dd></div>
+      </dl>
+    </div>
+
+    <!-- Portrait. To drop it, delete this <figure> and set .masthead
+         grid-template-columns to `1fr`. -->
+    <figure class="portrait">
+      <img src="img/portrait.jpg" width="733" height="1100" alt="Parker Sorensen, outdoors in a dark suit and red tie.">
+    </figure>
+  </header>
+
+  <div class="body-grid">
+
+    <!-- ================= STICKY RAIL ================= -->
+    <aside class="rail">
+      <nav aria-label="Sections">
+        <ul>
+          <li><a href="#work"><span class="n">01</span><span>Work</span></a></li>
+          <li><a href="#leadership"><span class="n">02</span><span>Leadership</span></a></li>
+          <li><a href="#interests"><span class="n">03</span><span>Interests</span></a></li>
+        </ul>
+      </nav>
+
+      <p class="tag" style="margin:0 0 .5rem">Contact</p>
+      <p class="contact">
+        <a href="mailto:pjs10039@nyu.edu">pjs10039@nyu.edu</a>
+        <a href="https://linkedin.com/in/parkersorensen">LinkedIn</a>
+        <a href="Resume/Parker_Sorensen_Resume.pdf">Résumé (PDF)</a>
+      </p>
+    </aside>
+
+    <!-- ================= MAIN ================= -->
+    <main id="main">
+
+      <!-- ---------- ABOUT ---------- -->
+      <div class="about">
+        <span class="tag">About</span>
+        <p>I'm an economics student at NYU's College of Arts &amp; Science, graduating in
+        January 2029. I grew up between Walnut Creek, California and Fort Collins,
+        Colorado, and I'm now based in New York.</p>
+
+        <p>I started college at Grand Canyon University as a finance major with an
+        accounting minor, earning a 3.86 GPA. There I was a founding member of the
+        investment banking club and led the energy sector of a roughly $5M
+        student-managed investment fund. I transferred to NYU this fall to be closer to
+        the industry and the people in it.</p>
+
+        <p>My experience started in accounting, with internships at Flood &amp; Peterson
+        and Even/Odd. I then spent a semester as a spring analyst at The Peakstone Group
+        in Chicago, working across a variety of deal types. For the summer I joined Clarke
+        Advisors, which works entirely in supply chain and logistics, drawn by its
+        reputation for giving analysts more hands-on responsibility in live deals.</p>
+
+        <p>I'm recruiting for Summer 2028 investment banking analyst roles. Long term, I
+        want to run or build a business, and I see banking as the fastest way to learn how
+        companies are valued, financed, and sold.</p>
+      </div>
+
+      <!-- ---------- 01 WORK ---------- -->
+      <section id="work">
+        <div class="section-head"><span class="n">01</span><h2>Work</h2></div>
+
+        <article class="entry">
+          <div class="meta">
+            <span>May – August 2026</span>
+            <span>Phoenix</span>
+            <span>Supply chain &amp; logistics</span>
+          </div>
+          <div class="prose">
+            <h3>Investment Banking Summer Analyst — Clarke Advisors</h3>
+            <p>Supply chain and logistics M&amp;A in the lower middle market. Most of my work was drafting teasers and CIMs for new engagements, then keeping those materials and the underlying valuation models current as new information came in or the framing of a deal needed to change.</p>
+            <p>A large part of the role was screening prospective clients. I would receive the data room for a new company and be asked for my view. I always started from the perspective of a potential buyer: what would someone paying for this business want to see, and what would make them walk away? From there I researched the business, tested management's claims against public information and comparable deals the firm had done, and reported back. My assessments were taken seriously.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="meta">
+            <span>Nov 2025 – May 2026</span>
+            <span>Chicago</span>
+            <span>Middle-market M&amp;A</span>
+          </div>
+          <div class="prose">
+            <h3>Investment Banking Spring Analyst — Peakstone Group</h3>
+            <p>Middle-market investment banking across a variety of deal types, reporting directly to a managing director. My largest engagement was a Series A raise for a pre-revenue hardware company. I drafted the teaser, built and scored the investor target list by fit, and helped draft investor outreach. I also supported research on other mandates, including storage capacity analysis for a petroleum terminal sale.</p>
+            <p>The most important work on that raise was diligence. I audited the company's financial model and marketing materials against primary sources. Several headline claims did not hold up, including the size of the addressable market and the safety statistics behind the pitch.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="meta">
+            <span>Jun – Nov 2025</span>
+            <span>San Francisco</span>
+            <span>Finance &amp; accounting operations</span>
+          </div>
+          <div class="prose">
+            <h3>Accounting Intern — Even/Odd</h3>
+            <p>A close look at how a business runs from the inside. I supported quarterly sales and production reporting and budget audits, which showed me how the numbers in a financial statement actually get made and how operating decisions show up in them.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="meta">
+            <span>Apr – Aug 2025</span>
+            <span>Greeley, Colorado</span>
+            <span>Insurance brokerage</span>
+          </div>
+          <div class="prose">
+            <h3>Accounting Intern — Flood &amp; Peterson</h3>
+            <p>Handled weekly accounts receivable, reconciled payment logs, and helped prepare the monthly internal financial statements.</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ---------- 02 LEADERSHIP & INVOLVEMENT ---------- -->
+      <section id="leadership">
+        <div class="section-head"><span class="n">02</span><h2>Leadership &amp; involvement</h2></div>
+
+        <article class="entry">
+          <div class="meta">
+            <span>Nov 2024 – May 2026</span>
+            <span>Sector head, energy</span>
+          </div>
+          <div class="prose">
+            <h3>Energy Sector Head — Student-Managed Investment Fund, Grand Canyon University</h3>
+            <p>I led energy coverage for a student-managed fund with roughly $5M under management. The work was modeling companies in the sector, identifying names we thought were mispriced, and presenting buy and sell recommendations to the investment committee.</p>
+            <p>My main pitch was Tidewater, the offshore vessel operator. I built the financial model behind it and presented the recommendation to the committee.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="meta">
+            <span>Apr 2025 – May 2026</span>
+            <span>Founding member</span>
+          </div>
+          <div class="prose">
+            <h3>Founding Member — Investment Banking Club, Grand Canyon University</h3>
+            <p>I helped found GCU's Investment Banking Club, built around weekly technical workshops led by upperclassmen with full-time banking experience. Through the club I built an LBO model and delivered a mock pitch on a simulated company, and worked through structured sessions on networking and interview prep.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="meta">
+            <span>2022 – 2024</span>
+            <span>Fort Collins</span>
+          </div>
+          <div class="prose">
+            <h3>Special Olympics</h3>
+            <p>Two years volunteering at the annual event, working one-on-one with athletes to support and encourage them through competition.</p>
+          </div>
+        </article>
+      </section>
+
+      <!-- ---------- 03 INTERESTS ---------- -->
+      <section id="interests">
+        <div class="section-head"><span class="n">03</span><h2>Interests</h2></div>
+
+        <article class="entry">
+          <div class="meta">
+            <span>Python, Rust</span>
+            <span>Personal project</span>
+          </div>
+          <div class="prose">
+            <h3>Learning to build with code and AI</h3>
+            <p>I've gotten into coding largely through AI tools. They let me go from an idea to working software much faster than I expected, and the more I built, the more I wanted to understand how the pieces actually fit together.</p>
+            <p>The project I've used to learn is Soren. Kalshi and Polymarket often list contracts on the same event, and because each runs its own order book, the same outcome can trade at two different prices. Soren matches contracts across both platforms and flags price gaps wide enough to survive fees. Building it meant learning to work with live market data from two very different APIs.</p>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="meta">
+          </div>
+          <div class="prose">
+            <h3>Golf and football</h3>
+            <p>I'm an avid golfer. I played in high school and worked at a pro shop my senior year. Before that I played defensive end and tight end on the varsity football team, and I'm still a 49ers fan.</p>
+            <figure class="entry-figure">
+              <img src="img/golf.jpg" width="1600" height="1200" loading="lazy" alt="Crowds lining a fairway at the WM Phoenix Open, mountains behind.">
+            </figure>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="meta">
+          </div>
+          <div class="prose">
+            <h3>Outdoors</h3>
+            <p>Growing up in Colorado meant a lot of time outside, mostly hiking, along with snowboarding, rock climbing, and trips to national parks. When I can, I'm out on the water boating.</p>
+          </div>
+        </article>
+      </section>
+
+      <footer>
+        <p class="tag" style="margin:0">Parker Sorensen — New York</p>
+        <p class="tag" style="margin:0">Built by me with help from Claude. Static HTML and CSS.</p>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<!-- ===================================================================
+     LOCAL EDITING ONLY — not part of the site.
+     Loads the in-browser editor when served from localhost. On GitHub
+     Pages the hostname check fails and nothing loads, so this is inert
+     in production. Delete this block (plus edit.js, save-server.py and
+     .edit-backups/) if you'd rather not carry it at all.
+     =================================================================== -->
+<script>
+  if (["localhost", "127.0.0.1"].indexOf(location.hostname) !== -1) {
+    var s = document.createElement("script");
+    s.src = "edit.js";
+    document.body.appendChild(s);
+  }
+</script>
+
+
+
+
+</body></html>

@@ -1,0 +1,18 @@
+# Only the two images the site actually uses are tracked.
+# Originals and unused crops stay on disk but out of the repo.
+photos/
+img/*
+!img/portrait.jpg
+!img/golf.jpg
+
+# Working files
+*.docx
+~$*
+.edit-backups/
+
+# macOS
+.DS_Store
+._*
+
+# Node (browser-sync runs via npx; nothing is installed here)
+node_modules/
